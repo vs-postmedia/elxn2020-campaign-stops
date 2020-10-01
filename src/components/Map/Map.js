@@ -79,7 +79,7 @@ export default class Map extends Component {
 				{this.hoverInfo.object && (
 					<div className='popup' style={{cursor: 'pointer', position: 'absolute', zIndex: 100, pointerEvents: 'none', left: this.hoverInfo.x + 10, top: this.hoverInfo.y}}>
 							<h3>{this.hoverInfo.object.Date}</h3>
-							<p>{this.hoverInfo.object.Who} travels to the riding of <strong>{this.hoverInfo.object.Riding}</strong>. In 2017, the {this.hoverInfo.object.party_incumbent} won this riding by {this.hoverInfo.object.mov} points.</p>
+							<p>{this.hoverInfo.object.Who} travels to {this.hoverInfo.object.City}, in the riding of <strong>{this.hoverInfo.object.Riding}</strong>. In 2017, the {this.hoverInfo.object.party_incumbent} won this riding by {this.hoverInfo.object.mov} points.</p>
 					</div>
 				)}
 
