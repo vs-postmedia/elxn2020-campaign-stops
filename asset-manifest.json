@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/elxn2020-campaign-stops/static/css/main.97c82888.chunk.css",
+    "main.js": "/elxn2020-campaign-stops/static/js/main.9c383bfe.chunk.js",
+    "main.js.map": "/elxn2020-campaign-stops/static/js/main.9c383bfe.chunk.js.map",
+    "runtime-main.js": "/elxn2020-campaign-stops/static/js/runtime-main.f26d33dd.js",
+    "runtime-main.js.map": "/elxn2020-campaign-stops/static/js/runtime-main.f26d33dd.js.map",
+    "static/js/2.f0cac51a.chunk.js": "/elxn2020-campaign-stops/static/js/2.f0cac51a.chunk.js",
+    "static/js/2.f0cac51a.chunk.js.map": "/elxn2020-campaign-stops/static/js/2.f0cac51a.chunk.js.map",
+    "index.html": "/elxn2020-campaign-stops/index.html",
+    "precache-manifest.3447bc5971eafea71cfeb3a0f74b1cfe.js": "/elxn2020-campaign-stops/precache-manifest.3447bc5971eafea71cfeb3a0f74b1cfe.js",
+    "service-worker.js": "/elxn2020-campaign-stops/service-worker.js",
+    "static/css/main.97c82888.chunk.css.map": "/elxn2020-campaign-stops/static/css/main.97c82888.chunk.css.map",
+    "static/js/2.f0cac51a.chunk.js.LICENSE.txt": "/elxn2020-campaign-stops/static/js/2.f0cac51a.chunk.js.LICENSE.txt",
+    "static/media/BentonSansCond-Bold.otf": "/elxn2020-campaign-stops/static/media/BentonSansCond-Bold.6f6753fd.otf",
+    "static/media/BentonSansCond-BoldItalic.otf": "/elxn2020-campaign-stops/static/media/BentonSansCond-BoldItalic.a6640d89.otf",
+    "static/media/BentonSansCond-RegItalic.otf": "/elxn2020-campaign-stops/static/media/BentonSansCond-RegItalic.69a4217c.otf",
+    "static/media/BentonSansCond-Regular.otf": "/elxn2020-campaign-stops/static/media/BentonSansCond-Regular.43cd4ac7.otf",
+    "static/media/Shift-Bold.otf": "/elxn2020-campaign-stops/static/media/Shift-Bold.cdd38a86.otf",
+    "static/media/index.css": "/elxn2020-campaign-stops/static/media/Shift-BoldItalic.5c3edbfd.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f26d33dd.js",
+    "static/js/2.f0cac51a.chunk.js",
+    "static/css/main.97c82888.chunk.css",
+    "static/js/main.9c383bfe.chunk.js"
+  ]
+}
