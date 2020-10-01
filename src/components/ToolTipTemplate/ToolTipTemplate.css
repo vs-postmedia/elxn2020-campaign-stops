@@ -1,0 +1,20 @@
+.mapboxgl-popup-content {
+	white-space: normal;
+}
+.mapboxgl-popup-content {
+	width: 175px;
+}
+.mapboxgl-popup-content h3 {
+	font-family: 'BentonSansCond-Bold', sans-serif;
+	font-size: 1.25rem;
+	margin: 5px 0;
+}
+
+.mapboxgl-popup-content p {
+	margin: 3px 0;
+	line-height: 1.1;
+}
+
+.mapboxgl-popup-content .status {
+	font-family: 'BentonSansCond-Bold', sans-serif;
+}

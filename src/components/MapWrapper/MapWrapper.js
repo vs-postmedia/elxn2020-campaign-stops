@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import InputSlider from '../InputSlider/InputSlider';
+import FilterButtons from '../FilterButtons/FilterButtons';
 import Map from '../Map/Map';
 import Papa from 'papaparse';
 
@@ -25,6 +26,7 @@ export default class MapWrapper extends Component {
 	state = {
 		currentDate: '',
 		data: [],
+		partyFilter: 'all',
 		rawData: [],
 		sliderMax: 0
 	}
@@ -36,7 +38,7 @@ export default class MapWrapper extends Component {
 			complete: results => this.handleData(results.data)
 		});
 
-		// this.animationLoop = this.animationLoop.bind(this);
+		this.filterData = this.filterData.bind(this);
 		this.updateRouteData = this.updateRouteData.bind(this);
 	}
 
@@ -57,6 +59,21 @@ export default class MapWrapper extends Component {
 	// 	// set up next iteration of the loop
 	// 	this._frameId = window.requestAnimationFrame(this.animationLoop);
 	// }
+	filterData(e) {
+		let data;
+		const id = e.target.id;
+
+		if (id !== 'all') {
+			data = this.state.rawData.filter(d => d.id === id);
+		} else {
+			data = this.state.rawData;
+		}
+
+		this.setState({
+			data: data,
+			partyFilter: id
+		});
+	}
 
 	handleData(data) {
 		// sort by date
@@ -103,8 +120,17 @@ export default class MapWrapper extends Component {
 	// }
 
 	updateRouteData(e) {
+		let data;
 		const value = e.target.valueAsNumber
-		const routes = this.state.rawData.map(d => {
+		const partyFilter = this.state.partyFilter;
+
+		if (partyFilter === 'all') {
+			data = this.state.rawData;
+		} else {
+			data = this.state.rawData.filter(d => d.id === partyFilter);
+		}
+
+		const routes = data.map(d => {
 			return {
 				id: d.id,
 				color: d.color,
@@ -112,8 +138,6 @@ export default class MapWrapper extends Component {
 			}
 		});
 
-		console.log(value)
-		console.log(routes)
 		this.setState({
 			currentDate: routes[0].data[value - 1].Date,
 			data: routes
@@ -124,13 +148,16 @@ export default class MapWrapper extends Component {
 	render() {
 		return (
 			<Fragment>
-			{this.state.sliderMax > 0 && (
-				<InputSlider 
-					currentDate={this.state.currentDate}
-					sliderMax={this.state.sliderMax} 
-					onChange={this.updateRouteData}>
-					</InputSlider>
-			)}
+				{this.state.sliderMax > 0 && (
+					<InputSlider 
+						currentDate={this.state.currentDate}
+						sliderMax={this.state.sliderMax} 
+						onChange={this.updateRouteData}>
+						</InputSlider>
+				)}
+				<FilterButtons
+					onClick={this.filterData}
+				></FilterButtons>
 				<Map 
 					accessToken={this.props.accessToken}
 					data={this.state.data}

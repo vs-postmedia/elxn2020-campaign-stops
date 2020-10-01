@@ -4,3 +4,14 @@
 	right: 0;
 	top: 0;
 }
+
+.popup {
+	background: rgb(255,255,255, 0.9);
+	border-radius: 3px;
+	max-width: 220px;
+	padding: 5px;
+}
+
+.popup h3 {
+	padding-bottom: 3px;
+}
