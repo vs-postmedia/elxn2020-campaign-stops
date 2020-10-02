@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './InputSlider.css';
 
 const InputSlider = (props) => {
@@ -8,9 +8,10 @@ const InputSlider = (props) => {
 			<div className="inputs">
 				<button className="play-button">Play</button>
 				<input id="input-slider" type="range" 
-					defaultValue={props.sliderMax} 
 					step={1} 
-					min={1} max={props.sliderMax}
+					min={1} 
+					max={props.sliderMax}
+					value={props.value}
 					onChange={props.onChange}>
 				</input>
 			</div>

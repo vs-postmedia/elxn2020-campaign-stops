@@ -2,3 +2,4 @@ config/mapbox-config.js
 .DS_Store
 misc/
 node_modules
+build/

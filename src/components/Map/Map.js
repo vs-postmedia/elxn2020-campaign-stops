@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DeckGL, { GeoJsonLayer, ArcLayer } from 'deck.gl';
+import DeckGL, { ArcLayer } from 'deck.gl';
 import { StaticMap } from 'react-map-gl';
 import ToolTipTemplate from '../ToolTipTemplate/ToolTipTemplate';
 

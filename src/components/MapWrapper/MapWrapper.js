@@ -11,6 +11,7 @@ const center = window.innerWidth > 400 ? [49.008218,-123.496327] : [49.008218,-1
 
 
 export default class MapWrapper extends Component {
+	dates = [];
 	map_options = {
 		// center: center,
 		bearing: -20,
@@ -25,6 +26,7 @@ export default class MapWrapper extends Component {
 
 	state = {
 		currentDate: '',
+		currentDateIndex: 0,
 		data: [],
 		partyFilter: 'all',
 		rawData: [],
@@ -38,7 +40,7 @@ export default class MapWrapper extends Component {
 			complete: results => this.handleData(results.data)
 		});
 
-		this.filterData = this.filterData.bind(this);
+		this.filterButton = this.filterButton.bind(this);
 		this.updateRouteData = this.updateRouteData.bind(this);
 	}
 
@@ -59,14 +61,26 @@ export default class MapWrapper extends Component {
 	// 	// set up next iteration of the loop
 	// 	this._frameId = window.requestAnimationFrame(this.animationLoop);
 	// }
-	filterData(e) {
+	filterButton(e) {
 		let data;
 		const id = e.target.id;
 
 		if (id !== 'all') {
-			data = this.state.rawData.filter(d => d.id === id);
+			const partyData = this.state.rawData.filter(d => d.id === id);
+			data = [{
+				id: partyData[0].id,
+				color: partyData[0].color,
+				data: partyData[0].data.slice(0, this.state.currentDateIndex)
+			}];
+			
 		} else {
-			data = this.state.rawData;
+			data = this.state.rawData.map(d => {
+				return {
+					id: d.id,
+					color: d.color,
+					data: d.data.slice(0, this.state.currentDateIndex)
+				};
+			})
 		}
 
 		this.setState({
@@ -102,6 +116,7 @@ export default class MapWrapper extends Component {
 		this.setState({
 			// start on the last day
 			currentDate: this.dates[this.dates.length - 1],
+			currentDateIndex: this.dates.length - 1,
 			data: routes,
 			rawData: routes,
 			sliderMax: this.dates.length
@@ -140,6 +155,7 @@ export default class MapWrapper extends Component {
 
 		this.setState({
 			currentDate: routes[0].data[value - 1].Date,
+			currentDateIndex: value,
 			data: routes
 		});
 	}
@@ -152,11 +168,12 @@ export default class MapWrapper extends Component {
 					<InputSlider 
 						currentDate={this.state.currentDate}
 						sliderMax={this.state.sliderMax} 
+						value={this.state.currentDateIndex}
 						onChange={this.updateRouteData}>
 						</InputSlider>
 				)}
 				<FilterButtons
-					onClick={this.filterData}
+					onClick={this.filterButton}
 				></FilterButtons>
 				<Map 
 					accessToken={this.props.accessToken}
