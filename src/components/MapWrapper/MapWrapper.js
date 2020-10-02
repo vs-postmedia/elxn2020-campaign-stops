@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import OverlayPanel from '../OverlayPanel/OverlayPanel';
 import InputSlider from '../InputSlider/InputSlider';
 import FilterButtons from '../FilterButtons/FilterButtons';
 import Map from '../Map/Map';
@@ -13,9 +14,7 @@ const center = window.innerWidth > 400 ? [49.008218,-123.496327] : [49.008218,-1
 export default class MapWrapper extends Component {
 	dates = [];
 	map_options = {
-		// center: center,
 		bearing: -20,
-		// container: 'mapview',
 		longitude: center[1],
 		latitude: center[0],
 		maxZoom: 8,
@@ -30,7 +29,8 @@ export default class MapWrapper extends Component {
 		data: [],
 		partyFilter: 'all',
 		rawData: [],
-		sliderMax: 0
+		sliderMax: 0,
+		timestamp: 0
 	}
 
 	componentDidMount() {
@@ -49,10 +49,6 @@ export default class MapWrapper extends Component {
 	// 	console.log(currentProps)
 	// }
 
-	componentWillUnmount() {
-		// window.cancelAnimationFrame(this._frameId);
-	}
-
 	// animationLoop() {
 	// 	// perform loop work here
 	// 	console.log(this._frameId)
@@ -64,13 +60,14 @@ export default class MapWrapper extends Component {
 	filterButton(e) {
 		let data;
 		const id = e.target.id;
+		const currentTimestamp = this.state.timestamp;
 
 		if (id !== 'all') {
 			const partyData = this.state.rawData.filter(d => d.id === id);
 			data = [{
 				id: partyData[0].id,
 				color: partyData[0].color,
-				data: partyData[0].data.slice(0, this.state.currentDateIndex)
+				data: partyData[0].data.filter(d => d.timestamp <= currentTimestamp)
 			}];
 			
 		} else {
@@ -78,7 +75,7 @@ export default class MapWrapper extends Component {
 				return {
 					id: d.id,
 					color: d.color,
-					data: d.data.slice(0, this.state.currentDateIndex)
+					data: d.data.filter(d => d.timestamp <= currentTimestamp)
 				};
 			})
 		}
@@ -88,12 +85,21 @@ export default class MapWrapper extends Component {
 			partyFilter: id
 		});
 	}
+	getTimestamp(currentDate) {
+		return new Date(`${currentDate.split('.')[1]} ${currentDate.split('.')[0]} 2020`);
+	}
 
 	handleData(data) {
 		// sort by date
-		const sorted = data.sort((a,b) => {
-			return new Date(a.date).getTime() - new Date(b.date).getTime();
-		});
+		const sorted = data
+			.map(d => {
+				d.timestamp = new Date(d.date).getTime()
+				return d;
+			})
+			.sort((a,b) => {
+				return new Date(a.date).getTime() - new Date(b.date).getTime();
+			});
+		
 		// get list of dates
 		this.dates = [...new Set(sorted.filter(d => d.target_id !== '').map(d => d.Date))];
 
@@ -113,15 +119,16 @@ export default class MapWrapper extends Component {
 			data: sorted.filter(d => d.Who === 'Wilkinson' && d.target_id !== '')
 		}];
 
+		const currentDate = this.dates[this.dates.length - 1];
 		this.setState({
 			// start on the last day
-			currentDate: this.dates[this.dates.length - 1],
-			currentDateIndex: this.dates.length - 1,
+			currentDate: currentDate,
+			currentDateIndex: this.dates.length,
 			data: routes,
 			rawData: routes,
-			sliderMax: this.dates.length
+			sliderMax: this.dates.length,
+			timestamp: this.getTimestamp(currentDate)
 		});
-
 
 		// start animation loop
 		// this.startLoop();
@@ -137,7 +144,9 @@ export default class MapWrapper extends Component {
 	updateRouteData(e) {
 		let data;
 		const value = e.target.valueAsNumber
+		const currentDate = this.dates[value - 1];
 		const partyFilter = this.state.partyFilter;
+		const currentTimestamp = this.getTimestamp(currentDate);
 
 		if (partyFilter === 'all') {
 			data = this.state.rawData;
@@ -145,18 +154,20 @@ export default class MapWrapper extends Component {
 			data = this.state.rawData.filter(d => d.id === partyFilter);
 		}
 
+		// filter data by date
 		const routes = data.map(d => {
 			return {
 				id: d.id,
 				color: d.color,
-				data: d.data.slice(0, value)
+				data: d.data.filter(d => d.timestamp <= currentTimestamp)
 			}
 		});
 
 		this.setState({
-			currentDate: routes[0].data[value - 1].Date,
+			currentDate: currentDate,
 			currentDateIndex: value,
-			data: routes
+			data: routes,
+			timestamp: currentTimestamp
 		});
 	}
 
@@ -164,17 +175,14 @@ export default class MapWrapper extends Component {
 	render() {
 		return (
 			<Fragment>
-				{this.state.sliderMax > 0 && (
-					<InputSlider 
-						currentDate={this.state.currentDate}
-						sliderMax={this.state.sliderMax} 
-						value={this.state.currentDateIndex}
-						onChange={this.updateRouteData}>
-						</InputSlider>
-				)}
-				<FilterButtons
+				<OverlayPanel
 					onClick={this.filterButton}
-				></FilterButtons>
+					currentDate={this.state.currentDate}
+					sliderMax={this.state.sliderMax} 
+					sliderValue={this.state.currentDateIndex}
+					onChange={this.updateRouteData}
+				></OverlayPanel>
+
 				<Map 
 					accessToken={this.props.accessToken}
 					data={this.state.data}
@@ -185,3 +193,16 @@ export default class MapWrapper extends Component {
 		);
 	}
 }
+/*
+{this.state.sliderMax > 0 && (
+	<InputSlider 
+		currentDate={this.state.currentDate}
+		sliderMax={this.state.sliderMax} 
+		value={this.state.currentDateIndex}
+		onChange={this.updateRouteData}>
+		</InputSlider>
+)}
+<FilterButtons
+	onClick={this.filterButton}
+></FilterButtons>
+*/

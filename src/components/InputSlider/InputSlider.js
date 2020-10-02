@@ -1,21 +1,15 @@
 import React from 'react';
-import './InputSlider.css';
+// import './InputSlider.css';
 
 const InputSlider = (props) => {
 	return (
-		<div className="controls">
-			<h2 className="date">{props.currentDate}</h2>
-			<div className="inputs">
-				<button className="play-button">Play</button>
-				<input id="input-slider" type="range" 
-					step={1} 
-					min={1} 
-					max={props.sliderMax}
-					value={props.value}
-					onChange={props.onChange}>
-				</input>
-			</div>
-		</div>
+		<input className="input-slider" type="range" 
+			step={1} 
+			min={1} 
+			max={props.sliderMax}
+			value={props.value}
+			onChange={props.onChange}>
+		</input>
 	);
 };
 
