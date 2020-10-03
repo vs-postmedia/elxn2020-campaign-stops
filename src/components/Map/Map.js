@@ -13,6 +13,8 @@ export default class Map extends Component {
 	layers = [];;
 	hoverInfo = {};
 
+
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,7 +24,8 @@ export default class Map extends Component {
 	}
 	
 
-	componentDidMount() {}
+	componentDidMount() {
+	}
 
 	componentDidUpdate(prevProps, currentProps) {}
 
@@ -43,16 +46,11 @@ export default class Map extends Component {
 					// interactivity
 					pickable: true,
 					onHover: info => {
-						
+						console.log(info.object)
 						if (info.object) {
-							console.log('hover!')
 							this.setState({ hoverInfo: info });
-							this.hoverInfo = info;
-							
 						} else {
-							console.log('unhover')
-							console.log(info.object)
-							// this.hoverInfo = {};
+							this.setState({ hoverInfo: {} })
 						}
 					},
 					// updates
@@ -65,8 +63,19 @@ export default class Map extends Component {
 		return layers;
 	}
 
-	setHoverInfo() {
-		console.log('viewstatchange')
+	renderTooltip(info) {
+		const { object, x, y } = info;
+		
+		if (!object) {
+			return null;
+		}
+
+		return (
+			<div className='popup' style={{cursor: 'pointer', position: 'absolute', zIndex: 100, pointerEvents: 'none', left: x + 10, top: y}}>
+					<h3>{object.Date}</h3>
+					<p>{object.Who} travels to {object.City}, in the riding of <strong>{object.Riding}</strong>. In 2017, the {object.party_incumbent} won this riding by {object.mov} points.</p>
+			</div>
+		);
 	}
 
 	render() {
@@ -74,19 +83,15 @@ export default class Map extends Component {
 			<DeckGL 
 				controller={true}
 				initialViewState={this.props.viewState}
-				layers={this._renderLayers()}>
-
-				{this.hoverInfo.object && (
-					<div className='popup' style={{cursor: 'pointer', position: 'absolute', zIndex: 100, pointerEvents: 'none', left: this.hoverInfo.x + 10, top: this.hoverInfo.y}}>
-							<h3>{this.hoverInfo.object.Date}</h3>
-							<p>{this.hoverInfo.object.Who} travels to {this.hoverInfo.object.City}, in the riding of <strong>{this.hoverInfo.object.Riding}</strong>. In 2017, the {this.hoverInfo.object.party_incumbent} won this riding by {this.hoverInfo.object.mov} points.</p>
-					</div>
-				)}
+				layers={this._renderLayers()}
+				getTooltup={this.renderTooltip}>
 
 				<StaticMap 
 					mapboxApiAccessToken={this.props.accessToken}
 					mapStyle={this.props.mapboxStyle}>
 				</StaticMap>
+
+				{this.renderTooltip(this.state.hoverInfo)}
 			</DeckGL>
 		);
 	}
