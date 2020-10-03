@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/elxn2020-campaign-stops/precache-manifest.85be5f8069f41802acb63e37c3a05972.js"
+  "/elxn2020-campaign-stops/precache-manifest.2deca835b86a2001d2dc8ad38dc49b96.js"
 );
 
 self.addEventListener('message', (event) => {
