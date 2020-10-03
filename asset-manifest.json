@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/elxn2020-campaign-stops/static/css/main.b72e189d.chunk.css",
-    "main.js": "/elxn2020-campaign-stops/static/js/main.0c7210d0.chunk.js",
-    "main.js.map": "/elxn2020-campaign-stops/static/js/main.0c7210d0.chunk.js.map",
+    "main.js": "/elxn2020-campaign-stops/static/js/main.b4f27a79.chunk.js",
+    "main.js.map": "/elxn2020-campaign-stops/static/js/main.b4f27a79.chunk.js.map",
     "runtime-main.js": "/elxn2020-campaign-stops/static/js/runtime-main.f26d33dd.js",
     "runtime-main.js.map": "/elxn2020-campaign-stops/static/js/runtime-main.f26d33dd.js.map",
     "static/js/2.340c9d5c.chunk.js": "/elxn2020-campaign-stops/static/js/2.340c9d5c.chunk.js",
     "static/js/2.340c9d5c.chunk.js.map": "/elxn2020-campaign-stops/static/js/2.340c9d5c.chunk.js.map",
     "index.html": "/elxn2020-campaign-stops/index.html",
-    "precache-manifest.46048c61a0be2cebfb08b8f726ba678b.js": "/elxn2020-campaign-stops/precache-manifest.46048c61a0be2cebfb08b8f726ba678b.js",
+    "precache-manifest.a31b6ab4f45485b3925b759d6e1e2a83.js": "/elxn2020-campaign-stops/precache-manifest.a31b6ab4f45485b3925b759d6e1e2a83.js",
     "service-worker.js": "/elxn2020-campaign-stops/service-worker.js",
     "static/css/main.b72e189d.chunk.css.map": "/elxn2020-campaign-stops/static/css/main.b72e189d.chunk.css.map",
     "static/js/2.340c9d5c.chunk.js.LICENSE.txt": "/elxn2020-campaign-stops/static/js/2.340c9d5c.chunk.js.LICENSE.txt",
@@ -23,6 +23,6 @@
     "static/js/runtime-main.f26d33dd.js",
     "static/js/2.340c9d5c.chunk.js",
     "static/css/main.b72e189d.chunk.css",
-    "static/js/main.0c7210d0.chunk.js"
+    "static/js/main.b4f27a79.chunk.js"
   ]
 }
