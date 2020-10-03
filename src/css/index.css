@@ -34,16 +34,16 @@ ul {
 }
 .App h2 {
 	color: var(--black);
-	font-family: BentonSansCond-Bold, serif;
+	font-family: BentonSansCond-Bold, sans-serif;
 	margin: 1px 0;
 }
 .App h3 {
 	color: var(--black);
-	font-family: BentonSansCond-Bold, serif;
+	font-family: BentonSansCond-Bold, sans-serif;
 }
 .App h4 {
 	color: var(--black);
-	font-family: BentonSansCond-Regular, serif;
+	font-family: BentonSansCond-Regular, sans-serif;
 	font-size: 0.8rem;
 }
 

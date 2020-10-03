@@ -1,7 +1,35 @@
-.filters {
+.filter-buttons {
 	
 }
 
-.controls > h2 {
-	padding-bottom: 10px;
+.filter-buttons .btn {
+	background-color: rgba(255, 255, 255, 0.6);
+	/*background-color: var(--green02);*/
+	border: 2px solid var(--highlight);
+	border: 0px solid transparent;
+	border-radius: 2px;
+	color: var(--highlight);
+	/*color: #FFF;*/
+	box-shadow: 0 1px 2px var(--highlight);
+	font-family: BentonSansCond-Regular, Helvetica, sans-serif;
+	font-weight: 800;
+	margin: 5px 3px;
+	outline: none;
+	overflow: hidden;
+	padding: 5px 10px;
+	transition: background-color .3s;
+}
+
+.filter-buttons .btn:hover, .filter-buttons .btn:focus {
+	background-color: var(--highlight);
+	color: #FFF;
+	/*background-color: #FFF;
+	color: var(--green02);*/
+}
+
+.filter-buttons .btn:active:before {
+	width: 120%;
+	padding-top: 120%;
+	
+	transition: width .2s ease-out, padding-top .2s ease-out;
 }

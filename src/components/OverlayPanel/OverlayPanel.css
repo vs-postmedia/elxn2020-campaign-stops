@@ -9,6 +9,7 @@
 }
 
 .App .overlay-panel h2 {
+	color: var(--highlight);
 	margin-bottom: 7px;
 }
 

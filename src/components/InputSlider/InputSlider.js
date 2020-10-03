@@ -1,5 +1,5 @@
 import React from 'react';
-// import './InputSlider.css';
+import './InputSlider.css';
 
 const InputSlider = (props) => {
 	return (
