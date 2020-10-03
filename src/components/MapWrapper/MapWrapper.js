@@ -8,7 +8,7 @@ import Papa from 'papaparse';
 
 // VARS
 const zoom = window.innerWidth > 400 ? 7 : 7;
-const center = window.innerWidth > 400 ? [49.008218,-123.496327] : [49.008218,-123.096327];
+const center = window.innerWidth > 400 ? [49.28218,-123.496327] : [49.58218,-123.596327];
 
 
 export default class MapWrapper extends Component {
@@ -17,7 +17,7 @@ export default class MapWrapper extends Component {
 		bearing: -20,
 		longitude: center[1],
 		latitude: center[0],
-		maxZoom: 8,
+		maxZoom: 9,
 		minZoom: 3,
 		pitch: 60,
 		zoom: zoom

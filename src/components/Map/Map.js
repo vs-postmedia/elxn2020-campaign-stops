@@ -42,11 +42,10 @@ export default class Map extends Component {
 					getTargetPosition: f => [parseFloat(f.target_lon), parseFloat(f.target_lat)],
 					getSourceColor: d.color,
 					getTargetColor: d.color,
-					getWidth: 5,
+					getWidth: 6,
 					// interactivity
 					pickable: true,
 					onHover: info => {
-						console.log(info.object)
 						if (info.object) {
 							this.setState({ hoverInfo: info });
 						} else {
@@ -81,10 +80,10 @@ export default class Map extends Component {
 	render() {
 		return (
 			<DeckGL 
-				controller={true}
+				controller={{touchRotate: true}}
 				initialViewState={this.props.viewState}
 				layers={this._renderLayers()}
-				getTooltup={this.renderTooltip}>
+				pickingRadius={10}>
 
 				<StaticMap 
 					mapboxApiAccessToken={this.props.accessToken}
