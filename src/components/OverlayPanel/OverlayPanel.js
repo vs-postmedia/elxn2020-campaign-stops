@@ -15,6 +15,7 @@ const OverlayPanel = (props) => {
 				</InputSlider>
 
 			<FilterButtons
+				getButtonClass={props.getButtonClass}
 				onClick={props.onClick}
 			></FilterButtons>
 		</div>

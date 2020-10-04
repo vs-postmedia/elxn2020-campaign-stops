@@ -20,7 +20,9 @@
 	transition: background-color .3s;
 }
 
-.filter-buttons .btn:hover, .filter-buttons .btn:focus {
+.filter-buttons .btn.active, 
+.filter-buttons .btn:focus,
+.filter-buttons .btn:hover  {
 	background-color: var(--highlight);
 	color: #FFF;
 	/*background-color: #FFF;

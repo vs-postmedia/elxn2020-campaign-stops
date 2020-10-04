@@ -24,6 +24,7 @@ export default class MapWrapper extends Component {
 	}
 
 	state = {
+		activeButton: 'all',
 		currentDate: '',
 		currentDateIndex: 0,
 		data: [],
@@ -62,6 +63,9 @@ export default class MapWrapper extends Component {
 		const id = e.target.id;
 		const currentTimestamp = this.state.timestamp;
 
+		// update the active button class
+		this.updateButtonClasses(id);
+
 		if (id !== 'all') {
 			const partyData = this.state.rawData.filter(d => d.id === id);
 			data = [{
@@ -85,6 +89,14 @@ export default class MapWrapper extends Component {
 			partyFilter: id
 		});
 	}
+
+	updateButtonClasses(id) {
+		const buttons = document.querySelectorAll('.btn');
+		buttons.forEach(d => {
+			d.id === id ? d.className = 'btn active' : d.className = 'btn';
+		});
+	}
+
 	getTimestamp(currentDate) {
 		return new Date(`${currentDate.split('.')[1]} ${currentDate.split('.')[0]} 2020`);
 	}
@@ -176,6 +188,7 @@ export default class MapWrapper extends Component {
 		return (
 			<Fragment>
 				<OverlayPanel
+					getButtonClass={this.getButtonClass}
 					onClick={this.filterButton}
 					currentDate={this.state.currentDate}
 					sliderMax={this.state.sliderMax} 
