@@ -7,12 +7,13 @@ const OverlayPanel = (props) => {
 	return (
 		<div className="overlay-panel">
 			<h2 className="date">{props.currentDate}</h2>
-				<InputSlider 
-					currentDate={props.currentDate}
-					sliderMax={props.sliderMax} 
-					value={props.sliderValue}
-					onChange={props.onChange}>
-				</InputSlider>
+			<button id="test" onClick={props.testClick}>Test</button>
+			<InputSlider 
+				currentDate={props.currentDate}
+				sliderMax={props.sliderMax} 
+				value={props.sliderValue}
+				onChange={props.onChange}>
+			</InputSlider>
 
 			<FilterButtons
 				getButtonClass={props.getButtonClass}

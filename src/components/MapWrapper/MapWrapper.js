@@ -1,3 +1,4 @@
+import DeckGL, { FlyToInterpolator } from 'deck.gl';
 import React, { Component, Fragment } from 'react';
 import OverlayPanel from '../OverlayPanel/OverlayPanel';
 import InputSlider from '../InputSlider/InputSlider';
@@ -13,7 +14,7 @@ const center = window.innerWidth > 400 ? [49.28218,-123.496327] : [49.58218,-123
 
 export default class MapWrapper extends Component {
 	dates = [];
-	map_options = {
+	viewState = {
 		bearing: -20,
 		longitude: center[1],
 		latitude: center[0],
@@ -31,7 +32,8 @@ export default class MapWrapper extends Component {
 		partyFilter: 'all',
 		rawData: [],
 		sliderMax: 0,
-		timestamp: 0
+		timestamp: 0,
+		viewState: this.viewState
 	}
 
 	componentDidMount() {
@@ -41,26 +43,14 @@ export default class MapWrapper extends Component {
 			complete: results => this.handleData(results.data)
 		});
 
+		this.updateMap = this.updateMap.bind(this);
 		this.filterButton = this.filterButton.bind(this);
 		this.updateRouteData = this.updateRouteData.bind(this);
 	}
 
-	// componentDidUpdate(prevProps, currentProps) {
-	// 	console.log(prevProps)
-	// 	console.log(currentProps)
-	// }
-
-	// animationLoop() {
-	// 	// perform loop work here
-	// 	console.log(this._frameId)
-	// 	this.updateRouteData();
-
-	// 	// set up next iteration of the loop
-	// 	this._frameId = window.requestAnimationFrame(this.animationLoop);
-	// }
 	filterButton(e) {
 		let data;
-		const id = e.target.id;
+		const id = e.target ? e.target.id : e;
 		const currentTimestamp = this.state.timestamp;
 
 		// update the active button class
@@ -90,12 +80,6 @@ export default class MapWrapper extends Component {
 		});
 	}
 
-	updateButtonClasses(id) {
-		const buttons = document.querySelectorAll('.btn');
-		buttons.forEach(d => {
-			d.id === id ? d.className = 'btn active' : d.className = 'btn';
-		});
-	}
 
 	getTimestamp(currentDate) {
 		return new Date(`${currentDate.split('.')[1]} ${currentDate.split('.')[0]} 2020`);
@@ -141,21 +125,44 @@ export default class MapWrapper extends Component {
 			sliderMax: this.dates.length,
 			timestamp: this.getTimestamp(currentDate)
 		});
-
-		// start animation loop
-		// this.startLoop();
 	}
 
-	// startLoop() {
-	// 	console.log('startloop')
-	// 	if (!this._frameId) {
-	// 		this._frameId = window.requestAnimationFrame(this.animationLoop);
-	// 	}
-	// }
+	updateButtonClasses(id) {
+		const buttons = document.querySelectorAll('.btn');
+		buttons.forEach(d => {
+			d.id === id ? d.className = 'btn active' : d.className = 'btn';
+		});
+	}
+
+	updateMap() {
+		const sliderValue = 6;
+		const activeButton = 'horgan';
+		const viewState = {
+			bearing: -20,
+			longitude: 	-128.607111,
+			latitude: 54.591442,
+			pitch: 60,
+			transitionDuration: 'auto',
+			transitionInterpolator: new FlyToInterpolator(),
+			zoom:6
+		};
+
+
+		this.setState({
+			activeButton: activeButton,
+			currentDateIndex: sliderValue,
+			currentDate: this.dates[sliderValue - 1],
+			viewState: viewState
+		});
+
+		// update the data
+		this.updateRouteData(sliderValue);
+		this.filterButton(activeButton);
+	}
 
 	updateRouteData(e) {
 		let data;
-		const value = e.target.valueAsNumber
+		const value = e.target ? e.target.valueAsNumber : e;
 		const currentDate = this.dates[value - 1];
 		const partyFilter = this.state.partyFilter;
 		const currentTimestamp = this.getTimestamp(currentDate);
@@ -183,7 +190,6 @@ export default class MapWrapper extends Component {
 		});
 	}
 
-
 	render() {
 		return (
 			<Fragment>
@@ -194,28 +200,16 @@ export default class MapWrapper extends Component {
 					sliderMax={this.state.sliderMax} 
 					sliderValue={this.state.currentDateIndex}
 					onChange={this.updateRouteData}
+					testClick={this.updateMap}
 				></OverlayPanel>
 
 				<Map 
 					accessToken={this.props.accessToken}
 					data={this.state.data}
 					mapboxStyle={this.props.mapboxStyle}
-					viewState={this.map_options}
+					viewState={this.state.viewState}
 				></Map>
 			</Fragment>
 		);
 	}
 }
-/*
-{this.state.sliderMax > 0 && (
-	<InputSlider 
-		currentDate={this.state.currentDate}
-		sliderMax={this.state.sliderMax} 
-		value={this.state.currentDateIndex}
-		onChange={this.updateRouteData}>
-		</InputSlider>
-)}
-<FilterButtons
-	onClick={this.filterButton}
-></FilterButtons>
-*/
