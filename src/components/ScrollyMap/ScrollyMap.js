@@ -8,12 +8,23 @@ import ScrollWrapper from '../ScrollWrapper/ScrollWrapper';
 export default class ScrollyMap extends Component {
 	dates = [];
 	articleViews;
+	constructor(props) {
+		super(props);
+
+		this.articleViews = this.props.articleViews;
+		this.filterButton = this.filterButton.bind(this);
+		this.updateGraphic = this.updateGraphic.bind(this);
+		this.updateRouteData = this.updateRouteData.bind(this);
+	}
+
+
 	state = {
 		activeButton: 'all',
 		allData: [],
 		currentDateIndex: 0,
 		currentView: this.props.articleViews[0],
 		currentData: [],
+		dataReady: false,
 		sliderMax: 0,
 		stepValue: 0,
 		timestamp: null
@@ -26,11 +37,6 @@ export default class ScrollyMap extends Component {
 			header: true,
 			complete: results => this.handleData(results.data)
 		});
-
-		this.articleViews = this.props.articleViews;
-		this.filterButton = this.filterButton.bind(this);
-		this.updateGraphic = this.updateGraphic.bind(this);
-		this.updateRouteData = this.updateRouteData.bind(this);
 	}
 	
 	filterButton(e) {
@@ -102,11 +108,12 @@ export default class ScrollyMap extends Component {
 		const currentDate = this.dates[this.dates.length - 1];
 
 		this.setState({
-			// start on the last day
-			currentDate: currentDate,
-			currentDateIndex: this.dates.length,
-			currentData: routes,
 			allData: routes,
+			currentData: routes,
+			currentDate: currentDate,
+			// start on the last day
+			currentDateIndex: this.dates.length,
+			dataReady: true,
 			sliderMax: this.dates.length,
 			timestamp: this.getTimestamp(currentDate)
 		});
@@ -121,7 +128,7 @@ export default class ScrollyMap extends Component {
 
 	updateGraphic(resp) {
 		const activeButton = this.articleViews[resp.index].activeButton;
-		// sometimes this.setstate not a function error on load??? WTF
+
 		this.setState({
 			activeButton: activeButton,
 			currentView: this.articleViews[resp.index],
@@ -181,12 +188,15 @@ export default class ScrollyMap extends Component {
 						>
 					</MapWrapper>
 				</div>
-				<ScrollWrapper
-		  			articleEntries={this.props.articleEntries}
-		  			articleViews={this.props.articleViews}
-		  			step={this.state.stepValue}
-		  			updateGraphic={this.updateGraphic}
-	  			></ScrollWrapper>
+				{ this.state.dataReady &&
+					<ScrollWrapper
+			  			articleEntries={this.props.articleEntries}
+			  			articleViews={this.props.articleViews}
+			  			dataReady={this.state.dataReady}
+			  			step={this.state.stepValue}
+			  			updateGraphic={this.updateGraphic}
+		  			></ScrollWrapper>
+				}
 			</Fragment>
 		);
 	}
