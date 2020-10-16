@@ -37,7 +37,7 @@ export default class Map extends Component {
 					getTargetPosition: f => [parseFloat(f.target_lon), parseFloat(f.target_lat)],
 					getSourceColor: d.color,
 					getTargetColor: d.color,
-					getWidth: 6,
+					getWidth: 4,
 					// interactivity
 					pickable: true,
 					onHover: info => {
