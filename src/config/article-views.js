@@ -61,14 +61,14 @@ const views = [
 		sliderValue: 21,
 		activeButton: 'all',
 		viewState: {
-			bearing: -20,
-			longitude: center[1],
-			latitude: center[0],
+			bearing: -8.83,
+			longitude: -122.964565510473,
+			latitude: 49.217462355344296,
 			maxZoom: 9,
 			minZoom: 3,
 			pitch: 60,
 			transitionDuration: 'auto',
-			zoom: 7
+			zoom: 9
 		}
 	},
 ]

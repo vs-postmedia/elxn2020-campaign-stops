@@ -101,7 +101,7 @@ export default class ScrollyMap extends Component {
 			data: sorted.filter(d => d.Who === 'Horgan' && d.target_id !== '')
 		}, {
 			id: 'wilkinson',
-			color: [234,0,58,255],
+			color: [8,71,154,255],
 			data: sorted.filter(d => d.Who === 'Wilkinson' && d.target_id !== '')
 		}];
 
@@ -109,8 +109,9 @@ export default class ScrollyMap extends Component {
 		const currentDate = this.dates[this.dates.length - 1];
 		
 		// we want our mapview to start on the most recent day. This is probably a bit hack-y but...
-		this.articleViews[0].sliderValue = this.dates.length;
-		this.articleViews[1].sliderValue = this.dates.length;
+		this.articleViews.forEach(d => d.sliderValue = this.dates.length);
+		// this.articleViews[0].sliderValue = this.dates.length;
+		// this.articleViews[1].sliderValue = this.dates.length;
 
 		this.setState({
 			allData: routes,
