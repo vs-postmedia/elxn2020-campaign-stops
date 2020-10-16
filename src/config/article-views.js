@@ -2,7 +2,7 @@ const center = window.innerWidth > 400 ? [49.28218,-123.496327] : [49.58218,-123
 
 const views = [
 	{
-		sliderValue: 0,
+		sliderValue: 1,
 		activeButton: 'all',
 		viewState: {
 			bearing: -20,
@@ -28,7 +28,7 @@ const views = [
 		}
 	},
 	{
-		sliderValue: 0,
+		sliderValue: 22,
 		activeButton: 'furstenau',
 		viewState: {
 			bearing: -10,

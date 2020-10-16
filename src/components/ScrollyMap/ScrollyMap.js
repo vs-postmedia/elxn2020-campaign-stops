@@ -120,12 +120,16 @@ export default class ScrollyMap extends Component {
 	}
 
 	updateGraphic(resp) {
+		const activeButton = this.articleViews[resp.index].activeButton;
 		// sometimes this.setstate not a function error on load??? WTF
 		this.setState({
-			activeButton: this.articleViews[resp.index].activeButton,
+			activeButton: activeButton,
 			currentView: this.articleViews[resp.index],
 			stepValue: resp.index
 		});
+
+		this.filterButton(activeButton);
+		this.updateRouteData(this.articleViews[resp.index].sliderValue);
 	}
 
 	updateRouteData(e) {
@@ -134,8 +138,6 @@ export default class ScrollyMap extends Component {
 		const currentDate = this.dates[value - 1];
 		const activeButton = this.state.activeButton;
 		const currentTimestamp = this.getTimestamp(currentDate);
-
-		console.log(currentDate, this.dates)
 
 		if (activeButton === 'all') {
 			data = this.state.allData;
