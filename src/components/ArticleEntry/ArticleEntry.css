@@ -7,5 +7,6 @@
 }
 
 .App .step:last-child {
-    margin-bottom: 0;
+	height: 50vh;
+    margin-bottom: 50vh;
 }

@@ -1,9 +1,9 @@
 .App .overlay-panel {
 	background-color: rgb(255,255,255,0.8);
-	left: 0;
 	margin: 20px;
 	padding: 10px;
 	position: absolute;
+	right: 0;
 	top: 0;
 	z-index: 100;
 }

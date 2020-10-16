@@ -16,7 +16,7 @@ export class Scrollyteller extends Component {
 			})
 			.onStepEnter(resp => this.props.updateGraphic(resp, this.props.articleViews))
 			.onStepExit(resp => {
-
+				// this.togglePointerEvents(resp.index);
 			});
 
 		// setup resize event
@@ -24,12 +24,13 @@ export class Scrollyteller extends Component {
 	}
 
 	togglePointerEvents(index) {
-		const container = document.querySelectorAll('.scroll-container');
-		if (parseInt(index) === 6) {
-			container[0].className += ' no-pointer ';
-			// fix graphic to bottom
+		const container = document.getElementById('scroller');
+
+		// disable pointer events so we can interact with underlying map
+		if (parseInt(index) === this.props.articleEntries.length - 1) {
+			container.classList.add('no-pointer');
 		} else {
-			// container[0].className = 'scroll-container';
+			container.classList.remove('no-pointer');
 		}
 	}
 
