@@ -1,0 +1,11 @@
+.App .step {
+	background-color: rgba(0, 0, 0, 0.1);
+	color: #fff;
+	height: 100vh;
+	margin: 0 auto 2rem 20%;
+	max-width: 300px; 
+}
+
+.App .step:last-child {
+    margin-bottom: 0;
+}

@@ -1,11 +1,15 @@
 import React from 'react';
-import MapWrapper from '../MapWrapper/MapWrapper';
+import ScrollyMap from '../ScrollyMap/ScrollyMap';
+
 import MapboxConfig from '../../config/mapbox-config';
+import ArticleEntries from '../../config/article-entries.json';
+import ArticleViews from '../../config/article-views.js';
+
 import './App.css';
 
 
 // map tiles & attribution
-const mapboxStyle = 'mapbox://styles/mapbox/outdoors-v11';
+const MapboxStyle = 'mapbox://styles/mapbox/outdoors-v11';
 // data
 const dataUrl = 'https://vs-postmedia-data.sfo2.digitaloceanspaces.com/elxn/campaign-stops%20-%20stops.csv';
 
@@ -13,11 +17,13 @@ const dataUrl = 'https://vs-postmedia-data.sfo2.digitaloceanspaces.com/elxn/camp
 function App() {
 	return (
 	  	<div className="App">
-	  		<MapWrapper
+	  		<ScrollyMap
+	  			articleEntries={ArticleEntries}
+	  			articleViews={ArticleViews}
 	  			dataUrl={dataUrl}
-	  			mapboxStyle={mapboxStyle}
-	  			accessToken={MapboxConfig.accessToken}>
-	  		</MapWrapper>
+	  			mapboxStyle={MapboxStyle}
+	  			accessToken={MapboxConfig.accessToken}
+	  		></ScrollyMap>
 	  	</div>
 	);
 }

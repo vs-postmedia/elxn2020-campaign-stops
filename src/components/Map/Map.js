@@ -10,10 +10,8 @@ export default class Map extends Component {
 	map;
 	popup;
 	// deckgl layers
-	layers = [];;
+	layers = [];
 	hoverInfo = {};
-
-
 
 	constructor(props) {
 		super(props);
