@@ -2,6 +2,7 @@ import Papa from 'papaparse';
 import React, { Component, Fragment } from 'react';
 import MapWrapper from '../MapWrapper/MapWrapper';
 import ScrollWrapper from '../ScrollWrapper/ScrollWrapper';
+import OverlayPanel from '../OverlayPanel/OverlayPanel';
 
 // import './ScrollyMap.css';
 
@@ -176,6 +177,13 @@ export default class ScrollyMap extends Component {
 	render() {
 		return (
 			<Fragment>
+				<OverlayPanel
+					onClick={this.filterButton}
+					currentDate={this.state.currentDate}
+					sliderMax={this.state.sliderMax} 
+					sliderValue={this.state.currentDateIndex}
+					onChange={this.updateRouteData}
+				></OverlayPanel>
 				<div id="deckgl-map">
 					<MapWrapper
 						accessToken={this.props.accessToken}
