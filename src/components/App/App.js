@@ -13,7 +13,6 @@ const MapboxStyle = 'mapbox://styles/mapbox/outdoors-v11';
 // data
 const dataUrl = 'https://vs-postmedia-data.sfo2.digitaloceanspaces.com/elxn/campaign-stops%20-%20stops.csv';
 
-
 function App() {
 	return (
 	  	<div className="App">

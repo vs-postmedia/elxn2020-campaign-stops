@@ -1,14 +1,22 @@
 [
 	{
 		"id": 0,
-		"text": "Step text 0"
+		"text": "With party leaders often making a single in-person campaign stop each day due to COVID-19, where candidates choose to go could say a lot about party strategies. Here, we’ve mapped every appearance made by the candidates. Updated daily."
 	},
 	{
 		"id": 1,
-		"text": "Step text 10"
+		"text": "<strong class='horgan'>Horgan</strong> and <strong class='wilkinson'>Wilkinson</strong> have criss-crossed the vote-rich Lower Mainland throughout the campaign."
 	},
 	{
 		"id": 2,
-		"text": "Step text 20"
+		"text": "While <strong class='furstenau'>Furstenau</strong> has focused her campaign around Victoria and her base in the Cowichan Valley."
+	},
+	{
+		"id": 3,
+		"text": "Both <strong class='horgan'>Horgan</strong> and <strong class='wilkinson'>Wilkinson</strong> have traveled north to Kitimat and east to the Kootenays and the interior..."
+	},
+	{
+		"id": 4,
+		"text": "... but these were some of the only stops outside of the Lower Mainland."
 	}
 ]

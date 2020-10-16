@@ -6,8 +6,9 @@ const ArticleEntry = (props) => {
 
 	return (
 		<li className='step' data-index={data.id}>
-			<p>{data.text}</p>
-			<h1>{props.step}</h1>
+			<div className='card'>
+				<p dangerouslySetInnerHTML={{__html: data.text}} />
+			</div>
 		</li>
 	);
 }

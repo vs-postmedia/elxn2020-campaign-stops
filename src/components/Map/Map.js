@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DeckGL, { ArcLayer } from 'deck.gl';
 import { StaticMap } from 'react-map-gl';
-import ToolTipTemplate from '../ToolTipTemplate/ToolTipTemplate';
+// import ToolTipTemplate from '../ToolTipTemplate/ToolTipTemplate';
 
 import './Map.css';
 
@@ -20,13 +20,10 @@ export default class Map extends Component {
 			hoverInfo: {}
 		};
 	}
-	
 
-	componentDidMount() {
+	_viewChange(viewState) {
+		console.log(viewState)
 	}
-
-	componentDidUpdate(prevProps, currentProps) {}
-
 	_renderLayers() {
 		const layers = [];
 		this.props.data.forEach(d => {
@@ -79,6 +76,7 @@ export default class Map extends Component {
 		return (
 			<DeckGL 
 				controller={{touchRotate: true}}
+				// onViewStateChange={this._viewChange}
 				initialViewState={this.props.viewState}
 				layers={this._renderLayers()}
 				pickingRadius={10}>

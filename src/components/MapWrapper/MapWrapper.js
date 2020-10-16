@@ -1,6 +1,7 @@
 import { FlyToInterpolator } from 'deck.gl';
 import React, { Fragment } from 'react';
 import OverlayPanel from '../OverlayPanel/OverlayPanel';
+import './MapWrapper.css';
 
 import Map from '../Map/Map';
 

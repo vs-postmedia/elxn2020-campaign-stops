@@ -106,6 +106,10 @@ export default class ScrollyMap extends Component {
 
 		// start on the most recent date
 		const currentDate = this.dates[this.dates.length - 1];
+		
+		// we want our mapview to start on the most recent day. This is probably a bit hack-y but...
+		this.articleViews[0].sliderValue = this.dates.length;
+		this.articleViews[1].sliderValue = this.dates.length;
 
 		this.setState({
 			allData: routes,
