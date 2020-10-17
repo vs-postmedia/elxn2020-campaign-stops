@@ -5,7 +5,7 @@ import ArticleList from '../ArticleList/ArticleList';
 
 import './ScrollWrapper.css';
 
-export class Scrollyteller extends Component {
+export class ScrollWrapper extends Component {
 	componentDidMount() {
 		const scroller = Scrollama();
 
@@ -16,7 +16,7 @@ export class Scrollyteller extends Component {
 			})
 			.onStepEnter(resp => this.props.updateGraphic(resp, this.props.articleViews))
 			.onStepExit(resp => {
-				// this.togglePointerEvents(resp.index);
+				this.togglePointerEvents(resp.index);
 			});
 
 		// setup resize event
@@ -46,4 +46,4 @@ export class Scrollyteller extends Component {
 	}
 }
 
-export default Scrollyteller;
+export default ScrollWrapper;
