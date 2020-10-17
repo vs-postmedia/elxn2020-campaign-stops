@@ -10,10 +10,19 @@
 	padding: 7px;
 }
 
+.App .step .card > h2 {
+	margin-bottom: 7px;
+}
 .App .step .card > p {
 	line-height: 1.5rem;
 }
 
+.App .step .card .scroll-note {
+	color: var(--grey02);
+	font-family: BentonSansCond-RegItalic, sans-serif;
+	margin: 5px 0;
+	text-align: center;
+}
 .App .step .card .furstenau {
 	color: var(--greenbc);
 }

@@ -11,8 +11,6 @@ const ArticleEntry = (props) => {
 		h2 = null;
 	}
 
-	console.log(h2)
-
 	return (
 		<li className='step' data-index={data.id}>
 			<div className='card'>
