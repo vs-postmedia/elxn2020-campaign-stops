@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7d8feacee7f020b58450e9916455ef0a",
+    "revision": "80f7472de5839e8b4990f40b97493a7d",
     "url": "/elxn2020-campaign-stops/index.html"
   },
   {
-    "revision": "42a2260f630d2140d28a",
-    "url": "/elxn2020-campaign-stops/static/css/main.7926b3d1.chunk.css"
+    "revision": "9ae1955d3520a54ae5ee",
+    "url": "/elxn2020-campaign-stops/static/css/main.213e17da.chunk.css"
   },
   {
     "revision": "e905edc3c773cbc8cd8d",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/elxn2020-campaign-stops/static/js/2.546a0e38.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "42a2260f630d2140d28a",
-    "url": "/elxn2020-campaign-stops/static/js/main.bc665768.chunk.js"
+    "revision": "9ae1955d3520a54ae5ee",
+    "url": "/elxn2020-campaign-stops/static/js/main.9e42ffd6.chunk.js"
   },
   {
     "revision": "20b90f2ade8a594a6620",
